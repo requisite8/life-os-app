@@ -1,12 +1,15 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, interactive-widget=resizes-content">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, interactive-widget=resizes-content">
     <title>Requisite Focus</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link rel="stylesheet" href="/static/style.css?v=29">
+    <link rel="stylesheet" href="/static/style.css?v=31">
 </head>
+
 <body>
     <div class="blob1"></div>
     <div class="blob2"></div>
@@ -15,29 +18,39 @@
     <div class="content">
         <div id="tab-focus" class="tab-content active">
             <div class="stats-row">
-                <div class="scard"><div class="sval" id="stat-sessions">0</div><div class="slabel">РЎРµСЃСЃРёРё СЃРµРіРѕРґРЅСЏ</div></div>
-                <div class="scard"><div class="sval" id="stat-time">0Рј</div><div class="slabel">Р’СЂРµРјСЏ С„РѕРєСѓСЃР°</div></div>
-                <div class="scard"><div class="sval" id="stat-streak">рџ”Ґ 0</div><div class="slabel">Р”РЅРµР№ РїРѕРґСЂСЏРґ</div></div>
+                <div class="scard">
+                    <div class="sval" id="stat-sessions">0</div>
+                    <div class="slabel">Сессии сегодня</div>
+                </div>
+                <div class="scard">
+                    <div class="sval" id="stat-time">0м</div>
+                    <div class="slabel">Время фокуса</div>
+                </div>
+                <div class="scard">
+                    <div class="sval" id="stat-streak">🔥 0</div>
+                    <div class="slabel">Дней подряд</div>
+                </div>
             </div>
 
             <div class="row-between" style="margin-bottom:14px;position:relative;z-index:1">
-                <span class="label-text">РќР°Рґ С‡РµРј СЂР°Р±РѕС‚Р°РµС€СЊ?</span>
-                <div class="chip" id="categoryBtn" onclick="toggleCategory(event)">рџ’ј Deep Work</div>
+                <span class="label-text">Над чем работаешь?</span>
+                <div class="chip" id="categoryBtn" onclick="toggleCategory(event)">💼 Deep Work</div>
             </div>
 
             <div class="timer-card">
                 <div class="timer-top-row">
-                    <span class="mode-label">Р’ СЂРµР¶РёРјРµ С„РѕРєСѓСЃР°</span>
+                    <span class="mode-label">В режиме фокуса</span>
                     <div class="time-select-btn" onclick="toggleTimeDropdown(event)" id="timeBtn">
-                        РЎРµРєСѓРЅРґРѕРјРµСЂ
+                        Секундомер
                         <div class="dropdown" id="timeDropdown">
-                            <div class="dropdown-item active" onclick="selectMode(0,'РЎРµРєСѓРЅРґРѕРјРµСЂ',event)"><span class="check">вњ“</span> РЎРµРєСѓРЅРґРѕРјРµСЂ</div>
-                            <div class="dropdown-item" onclick="selectMode(900,'15 РјРёРЅ',event)">15 РјРёРЅ</div>
-                            <div class="dropdown-item" onclick="selectMode(1500,'25 РјРёРЅ',event)">25 РјРёРЅ</div>
-                            <div class="dropdown-item" onclick="selectMode(2700,'45 РјРёРЅ',event)">45 РјРёРЅ</div>
-                            <div class="dropdown-item" onclick="selectMode(3600,'60 РјРёРЅ',event)">60 РјРёРЅ</div>
-                            <div class="dropdown-item" onclick="selectMode(5400,'90 РјРёРЅ',event)">90 РјРёРЅ</div>
-                            <div class="dropdown-item" onclick="selectMode(-1,'РЎРІРѕС‘',event)">вњЏпёЏ РЎРІРѕС‘</div>
+                            <div class="dropdown-item active" onclick="selectMode(0,'Секундомер',event)"><span
+                                    class="check">✓</span> Секундомер</div>
+                            <div class="dropdown-item" onclick="selectMode(900,'15 мин',event)">15 мин</div>
+                            <div class="dropdown-item" onclick="selectMode(1500,'25 мин',event)">25 мин</div>
+                            <div class="dropdown-item" onclick="selectMode(2700,'45 мин',event)">45 мин</div>
+                            <div class="dropdown-item" onclick="selectMode(3600,'60 мин',event)">60 мин</div>
+                            <div class="dropdown-item" onclick="selectMode(5400,'90 мин',event)">90 мин</div>
+                            <div class="dropdown-item" onclick="selectMode(-1,'Своё',event)">✏️ Своё</div>
                         </div>
                     </div>
                 </div>
@@ -47,38 +60,55 @@
                         <svg width="230" height="230" viewBox="0 0 230 230">
                             <defs>
                                 <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="rgba(80,200,255,0.95)"/>
-                                    <stop offset="50%" stop-color="rgba(160,80,255,0.95)"/>
-                                    <stop offset="100%" stop-color="rgba(255,80,160,0.95)"/>
+                                    <stop offset="0%" stop-color="rgba(80,200,255,0.95)" />
+                                    <stop offset="50%" stop-color="rgba(160,80,255,0.95)" />
+                                    <stop offset="100%" stop-color="rgba(255,80,160,0.95)" />
                                 </linearGradient>
                             </defs>
-                            <circle cx="115" cy="115" r="100" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-                            <circle cx="115" cy="115" r="90" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/>
-                            <circle id="trackArc" cx="115" cy="115" r="96" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="5" opacity="0"/>
-                            <circle id="progressArc" cx="115" cy="115" r="96" fill="none" stroke="url(#arcGradient)" stroke-width="5" stroke-dasharray="603" stroke-dashoffset="603" stroke-linecap="round" transform="rotate(-90 115 115)" opacity="0"/>
-                            <g class="spin-g paused" id="spinG" opacity="0"><line x1="115" y1="115" x2="115" y2="22" stroke="rgba(255,255,255,0.18)" stroke-width="1.2" stroke-linecap="round"/></g>
+                            <circle cx="115" cy="115" r="100" fill="rgba(255,255,255,0.02)"
+                                stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+                            <circle cx="115" cy="115" r="90" fill="none" stroke="rgba(255,255,255,0.03)"
+                                stroke-width="0.5" />
+                            <circle id="trackArc" cx="115" cy="115" r="96" fill="none" stroke="rgba(255,255,255,0.06)"
+                                stroke-width="5" opacity="0" />
+                            <circle id="progressArc" cx="115" cy="115" r="96" fill="none" stroke="url(#arcGradient)"
+                                stroke-width="5" stroke-dasharray="603" stroke-dashoffset="603" stroke-linecap="round"
+                                transform="rotate(-90 115 115)" opacity="0" />
+                            <g class="spin-g paused" id="spinG" opacity="0">
+                                <line x1="115" y1="115" x2="115" y2="22" stroke="rgba(255,255,255,0.18)"
+                                    stroke-width="1.2" stroke-linecap="round" />
+                            </g>
                         </svg>
                         <div class="circle-inner">
-                            <span class="start-label" id="startLabel">РЎРўРђР Рў</span>
+                            <span class="start-label" id="startLabel">СТАРТ</span>
                             <span class="timer-num hidden" id="timerNum">00:00</span>
-                            <span class="circle-hint" id="circleHint">РЅР°Р¶РјРё С‡С‚РѕР±С‹ РЅР°С‡Р°С‚СЊ</span>
+                            <span class="circle-hint" id="circleHint">нажми чтобы начать</span>
                         </div>
                     </div>
-                    <button class="btn-reset-bottom hidden" id="resetBtn" onclick="resetTimer()">в†є СЃР±СЂРѕСЃРёС‚СЊ</button>
-                    <span class="mode-badge" id="modeBadge">РІС‹Р±РµСЂРё СЂРµР¶РёРј Рё РЅР°Р¶РјРё</span>
+                    <button class="btn-reset-bottom hidden" id="resetBtn" onclick="resetTimer()">↺ сбросить</button>
+                    <span class="mode-badge" id="modeBadge">выбери режим и нажми</span>
                 </div>
-                <div class="music-player" id="musicPlayer" onclick="openMusicList()">
+                <div class="music-player hidden" id="musicPlayer" onclick="openMusicList()">
                     <div class="mp-art" id="mpArt"></div>
                     <div class="mp-info">
-                        <div class="mp-title" id="mpTitle">Р’С‹Р±РµСЂРё РјСѓР·С‹РєСѓ</div>
-                        <div class="mp-sub" id="mpSub">РЅР°Р¶РјРё С‡С‚РѕР±С‹ РѕС‚РєСЂС‹С‚СЊ</div>
+                        <div class="mp-title" id="mpTitle">Выбери музыку</div>
+                        <div class="mp-sub" id="mpSub">нажми чтобы открыть</div>
                     </div>
                     <button class="mp-btn" id="mpVolBtn" onclick="toggleMusicVol(event)">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                            <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" />
+                        </svg>
                     </button>
                     <button class="mp-btn mp-play-btn" id="mpPlayBtn" onclick="toggleMusic(event)">
-                        <svg id="mpIconPlay" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                        <svg id="mpIconPause" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+                        <svg id="mpIconPlay" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                        <svg id="mpIconPause" class="hidden" width="18" height="18" viewBox="0 0 24 24"
+                            fill="currentColor">
+                            <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
+                        </svg>
                     </button>
                 </div>
                 <div class="music-list hidden" id="musicList"></div>
@@ -87,23 +117,25 @@
 
         <div id="tab-tasks" class="tab-content">
             <div class="date-label" id="currentDate"></div>
-            <div class="page-title">РўСЂРµРєРµСЂ</div>
+            <div class="page-title">Трекер</div>
 
             <div class="switcher">
-                <div class="sw-btn active" onclick="switchTrackerPage('habits', this)">вњ… РџСЂРёРІС‹С‡РєРё</div>
-                <div class="sw-btn" onclick="switchTrackerPage('tasks', this)">рџ“‹ Р—Р°РґР°С‡Рё</div>
+                <div class="sw-btn active" onclick="switchTrackerPage('habits', this)">✅ Привычки</div>
+                <div class="sw-btn" onclick="switchTrackerPage('tasks', this)">📋 Задачи</div>
             </div>
 
-            <div class="tracker-page active" id="page-habits"><div id="habits-list"></div></div>
+            <div class="tracker-page active" id="page-habits">
+                <div id="habits-list"></div>
+            </div>
             <div class="tracker-page" id="page-tasks">
-                <div class="section-label">рџ’ј Р Р°Р±РѕС‚Р°</div>
+                <div class="section-label">💼 Работа</div>
                 <div id="tasks-work"></div>
-                <div class="section-label" style="margin-top:16px;">рџЊ± Р–РёР·РЅСЊ</div>
+                <div class="section-label" style="margin-top:16px;">🌱 Жизнь</div>
                 <div id="tasks-life"></div>
                 <div class="empty-state hidden" id="tasks-empty">
-                    <div class="empty-icon">рџ“‹</div>
-                    <div class="empty-text">РќРµС‚ Р·Р°РґР°С‡</div>
-                    <div class="empty-sub">РќР°Р¶РјРё + С‡С‚РѕР±С‹ РґРѕР±Р°РІРёС‚СЊ РїРµСЂРІСѓСЋ</div>
+                    <div class="empty-icon">📋</div>
+                    <div class="empty-text">Нет задач</div>
+                    <div class="empty-sub">Нажми + чтобы добавить первую</div>
                 </div>
             </div>
 
@@ -115,177 +147,266 @@
                 <div class="ai-logo">R</div>
                 <div>
                     <div class="ai-header-name">Life OS</div>
-                    <div class="ai-header-status"><div class="status-dot"></div>РѕРЅР»Р°Р№РЅ В· РІСЃРµРіРґР° СЂСЏРґРѕРј</div>
+                    <div class="ai-header-status">
+                        <div class="status-dot"></div>онлайн · всегда рядом
+                    </div>
                 </div>
             </div>
             <div class="chat-area" id="chatArea">
                 <div class="msg-ai">
                     <div class="ai-avatar-sm">R</div>
-                    <div class="msg-ai-bubble">РџСЂРёРІРµС‚! Р Р°СЃСЃРєР°Р¶Рё, С‡С‚Рѕ РїР»Р°РЅРёСЂСѓРµС€СЊ: Р·Р°РґР°С‡Рё, РІСЃС‚СЂРµС‡Рё, РґРµР»Р°. РЇ РїРѕРјРѕРіСѓ СЃС‚СЂСѓРєС‚СѓСЂРёСЂРѕРІР°С‚СЊ Рё РґРѕР±Р°РІР»СЋ РІ С‚СЂРµРєРµСЂ.</div>
+                    <div class="msg-ai-bubble">Привет! Расскажи, что планируешь: задачи, встречи, дела. Я помогу
+                        структурировать и добавлю в трекер.</div>
                 </div>
             </div>
             <div class="ai-input-area">
                 <div class="ai-input-wrap">
-                    <textarea class="ai-input-field" id="aiInput" placeholder="Р Р°СЃСЃРєР°Р¶Рё, С‡С‚Рѕ Сѓ С‚РµР±СЏ..." rows="1" onkeydown="handleAiKey(event)" oninput="autoResize(this)"></textarea>
-                    <button class="ai-send-btn" id="aiSendBtn" onclick="sendMessage()">в†‘</button>
+                    <textarea class="ai-input-field" id="aiInput" placeholder="Расскажи, что у тебя..." rows="1"
+                        onkeydown="handleAiKey(event)" oninput="autoResize(this)"></textarea>
+                    <button class="ai-send-btn" id="aiSendBtn" onclick="sendMessage()">↑</button>
                 </div>
             </div>
         </div>
 
         <div id="tab-stats" class="tab-content">
             <div class="profile-row">
-                <div class="avatar" id="userAvatar">Рђ</div>
+                <div class="avatar" id="userAvatar">А</div>
                 <div>
-                    <div class="profile-name" id="userName">РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ</div>
+                    <div class="profile-name" id="userName">Пользователь</div>
                     <div class="profile-sub" id="userDays">Life OS</div>
                 </div>
+                <button class="settings-gear-btn" onclick="openModal('modalSettings')" aria-label="Настройки">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+                    </svg>
+                </button>
             </div>
 
             <div class="week-nav">
-                <button class="week-arrow" onclick="changeWeek(-1)">вЂ№</button>
+                <button class="week-arrow" onclick="changeWeek(-1)">‹</button>
                 <div class="week-center">
-                    <div class="week-label" id="weekLabel">вЂ”</div>
-                    <div class="week-sub" id="weekSub">С‚РµРєСѓС‰Р°СЏ РЅРµРґРµР»СЏ</div>
+                    <div class="week-label" id="weekLabel">—</div>
+                    <div class="week-sub" id="weekSub">текущая неделя</div>
                 </div>
-                <button class="week-arrow" id="weekNextBtn" onclick="changeWeek(1)">вЂє</button>
+                <button class="week-arrow" id="weekNextBtn" onclick="changeWeek(1)">›</button>
             </div>
 
             <div class="chart-card">
-                <div class="chart-title">Р¤РѕРєСѓСЃ РїРѕ РґРЅСЏРј (С‡Р°СЃС‹)</div>
+                <div class="chart-title">Фокус по дням (часы)</div>
                 <div class="bars" id="focusBars"></div>
             </div>
 
             <div class="stats-grid">
-                <div class="stat-card"><div class="stat-top"><span class="stat-icon">вЏ±</span><span class="stat-change" id="focusChange">вЂ”</span></div><div class="stat-val" id="weekFocus">0С‡</div><div class="stat-lbl">Р¤РѕРєСѓСЃ Р·Р° РЅРµРґРµР»СЋ</div></div>
-                <div class="stat-card"><div class="stat-top"><span class="stat-icon">рџЋЇ</span><span class="stat-change" id="sessionsChange">вЂ”</span></div><div class="stat-val" id="weekSessions">0</div><div class="stat-lbl">РЎРµСЃСЃРёР№</div></div>
-                <div class="stat-card"><div class="stat-top"><span class="stat-icon">вњ…</span><span class="stat-change" id="habitsChange">вЂ”</span></div><div class="stat-val" id="weekHabits">вЂ”</div><div class="stat-lbl">РџСЂРёРІС‹С‡РєРё</div></div>
-                <div class="stat-card"><div class="stat-top"><span class="stat-icon">рџ“‹</span><span class="stat-change" id="tasksChange">вЂ”</span></div><div class="stat-val" id="weekTasks">0</div><div class="stat-lbl">Р—Р°РґР°С‡ РІС‹РїРѕР»РЅРµРЅРѕ</div></div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-icon">⏱</span><span class="stat-change"
+                            id="focusChange">—</span></div>
+                    <div class="stat-val" id="weekFocus">0ч</div>
+                    <div class="stat-lbl">Фокус за неделю</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-icon">🎯</span><span class="stat-change"
+                            id="sessionsChange">—</span></div>
+                    <div class="stat-val" id="weekSessions">0</div>
+                    <div class="stat-lbl">Сессий</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-icon">✅</span><span class="stat-change"
+                            id="habitsChange">—</span></div>
+                    <div class="stat-val" id="weekHabits">—</div>
+                    <div class="stat-lbl">Привычки</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-top"><span class="stat-icon">📋</span><span class="stat-change"
+                            id="tasksChange">—</span></div>
+                    <div class="stat-val" id="weekTasks">0</div>
+                    <div class="stat-lbl">Задач выполнено</div>
+                </div>
             </div>
 
             <div class="stats-habit-card" id="statsHabits">
-                <div class="chart-title">РџСЂРёРІС‹С‡РєРё Р·Р° РЅРµРґРµР»СЋ</div>
+                <div class="chart-title">Привычки за неделю</div>
                 <div id="habitsProgress"></div>
             </div>
-
-            <button class="theme-btn" onclick="openModal('modalTheme')">
-                <span class="theme-btn-dots" id="themeBtnDots"></span>
-                <span>РЎРјРµРЅРёС‚СЊ С„РѕРЅ</span>
-            </button>
         </div>
     </div>
 
     <div class="modal-overlay hidden" id="modalChoose">
         <div class="modal">
-            <div class="modal-title">Р§С‚Рѕ РґРѕР±Р°РІРёС‚СЊ?</div>
+            <div class="modal-title">Что добавить?</div>
             <div class="choose-btns">
-                <div class="choose-btn" onclick="closeModal('modalChoose'); openModal('modalHabit')"><div class="choose-icon">вњ…</div><div class="choose-label">РџСЂРёРІС‹С‡РєСѓ</div></div>
-                <div class="choose-btn" onclick="closeModal('modalChoose'); openModal('modalTask')"><div class="choose-icon">рџ“‹</div><div class="choose-label">Р—Р°РґР°С‡Сѓ</div></div>
+                <div class="choose-btn" onclick="closeModal('modalChoose'); openModal('modalHabit')">
+                    <div class="choose-icon">✅</div>
+                    <div class="choose-label">Привычку</div>
+                </div>
+                <div class="choose-btn" onclick="closeModal('modalChoose'); openModal('modalTask')">
+                    <div class="choose-icon">📋</div>
+                    <div class="choose-label">Задачу</div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="modal-overlay hidden" id="modalHabit">
         <div class="modal">
-            <div class="modal-title">РќРѕРІР°СЏ РїСЂРёРІС‹С‡РєР°</div>
-            <input class="modal-input" id="habitName" type="text" placeholder="РќР°Р·РІР°РЅРёРµ РїСЂРёРІС‹С‡РєРё...">
+            <div class="modal-title">Новая привычка</div>
+            <input class="modal-input" id="habitName" type="text" placeholder="Название привычки...">
             <div class="emoji-grid">
-                <div class="emoji-btn active" onclick="selectEmoji(this)">рџЏ‹пёЏ</div>
-                <div class="emoji-btn" onclick="selectEmoji(this)">рџ“љ</div>
-                <div class="emoji-btn" onclick="selectEmoji(this)">рџ›ЏпёЏ</div>
-                <div class="emoji-btn" onclick="selectEmoji(this)">рџ§</div>
-                <div class="emoji-btn" onclick="selectEmoji(this)">рџ’§</div>
-                <div class="emoji-btn" onclick="selectEmoji(this)">рџЌЋ</div>
-                <div class="emoji-btn" onclick="selectEmoji(this)">вњЌпёЏ</div>
-                <div class="emoji-btn" onclick="selectEmoji(this)">рџЋЇ</div>
+                <div class="emoji-btn active" onclick="selectEmoji(this)">🏋️</div>
+                <div class="emoji-btn" onclick="selectEmoji(this)">📚</div>
+                <div class="emoji-btn" onclick="selectEmoji(this)">🛏️</div>
+                <div class="emoji-btn" onclick="selectEmoji(this)">🧘</div>
+                <div class="emoji-btn" onclick="selectEmoji(this)">💧</div>
+                <div class="emoji-btn" onclick="selectEmoji(this)">🍎</div>
+                <div class="emoji-btn" onclick="selectEmoji(this)">✍️</div>
+                <div class="emoji-btn" onclick="selectEmoji(this)">🎯</div>
             </div>
-            <div class="modal-label">Р§Р°СЃС‚РѕС‚Р°</div>
+            <div class="modal-label">Частота</div>
             <div class="freq-btns">
-                <div class="freq-btn active" onclick="selectFreq(this)">РљР°Р¶РґС‹Р№ РґРµРЅСЊ</div>
-                <div class="freq-btn" onclick="selectFreq(this)">РџРЅ-РџС‚</div>
-                <div class="freq-btn" onclick="selectFreq(this)">РџРЅ, РЎСЂ, РџС‚</div>
+                <div class="freq-btn active" onclick="selectFreq(this)">Каждый день</div>
+                <div class="freq-btn" onclick="selectFreq(this)">Пн-Пт</div>
+                <div class="freq-btn" onclick="selectFreq(this)">Пн, Ср, Пт</div>
             </div>
-            <div class="modal-label">Р”РЅРё РЅРµРґРµР»Рё (Р»СЋР±РѕР№ РЅР°Р±РѕСЂ)</div>
+            <div class="modal-label">Дни недели (любой набор)</div>
             <div class="freq-btns" id="habitWeekdays">
-                <div class="freq-btn" data-day="0" onclick="toggleHabitWeekday(this)">РџРЅ</div>
-                <div class="freq-btn" data-day="1" onclick="toggleHabitWeekday(this)">Р’С‚</div>
-                <div class="freq-btn" data-day="2" onclick="toggleHabitWeekday(this)">РЎСЂ</div>
-                <div class="freq-btn" data-day="3" onclick="toggleHabitWeekday(this)">Р§С‚</div>
-                <div class="freq-btn" data-day="4" onclick="toggleHabitWeekday(this)">РџС‚</div>
-                <div class="freq-btn" data-day="5" onclick="toggleHabitWeekday(this)">РЎР±</div>
-                <div class="freq-btn" data-day="6" onclick="toggleHabitWeekday(this)">Р’СЃ</div>
+                <div class="freq-btn" data-day="0" onclick="toggleHabitWeekday(this)">Пн</div>
+                <div class="freq-btn" data-day="1" onclick="toggleHabitWeekday(this)">Вт</div>
+                <div class="freq-btn" data-day="2" onclick="toggleHabitWeekday(this)">Ср</div>
+                <div class="freq-btn" data-day="3" onclick="toggleHabitWeekday(this)">Чт</div>
+                <div class="freq-btn" data-day="4" onclick="toggleHabitWeekday(this)">Пт</div>
+                <div class="freq-btn" data-day="5" onclick="toggleHabitWeekday(this)">Сб</div>
+                <div class="freq-btn" data-day="6" onclick="toggleHabitWeekday(this)">Вс</div>
             </div>
-            <div class="modal-label">Р’СЂРµРјСЏ РЅР°РїРѕРјРёРЅР°РЅРёСЏ</div>
+            <div class="modal-label">Время напоминания</div>
             <input class="modal-input" id="habitReminderTime" type="time">
             <div class="modal-actions">
-                <button class="modal-btn-cancel" onclick="closeModal('modalHabit')">РћС‚РјРµРЅР°</button>
-                <button class="modal-btn-save" onclick="saveHabit()">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
+                <button class="modal-btn-cancel" onclick="closeModal('modalHabit')">Отмена</button>
+                <button class="modal-btn-save" onclick="saveHabit()">Сохранить</button>
             </div>
         </div>
     </div>
 
     <div class="modal-overlay hidden" id="modalTask">
         <div class="modal">
-            <div class="modal-title">РќРѕРІР°СЏ Р·Р°РґР°С‡Р°</div>
-            <input class="modal-input" id="taskName" type="text" placeholder="Р§С‚Рѕ РЅСѓР¶РЅРѕ СЃРґРµР»Р°С‚СЊ...">
-            <div class="modal-label">Р Р°Р·РґРµР»</div>
+            <div class="modal-title">Новая задача</div>
+            <input class="modal-input" id="taskName" type="text" placeholder="Что нужно сделать...">
+            <div class="modal-label">Раздел</div>
             <div class="freq-btns">
-                <div class="freq-btn active" onclick="selectFreq(this)">рџ’ј Р Р°Р±РѕС‚Р°</div>
-                <div class="freq-btn" onclick="selectFreq(this)">рџЊ± Р–РёР·РЅСЊ</div>
+                <div class="freq-btn active" onclick="selectFreq(this)">💼 Работа</div>
+                <div class="freq-btn" onclick="selectFreq(this)">🌱 Жизнь</div>
             </div>
-            <div class="modal-label">РџСЂРёРѕСЂРёС‚РµС‚</div>
+            <div class="modal-label">Приоритет</div>
             <div class="freq-btns">
-                <div class="freq-btn" onclick="selectFreq(this)">рџ”ґ Р’С‹СЃРѕРєРёР№</div>
-                <div class="freq-btn active" onclick="selectFreq(this)">рџџЎ РЎСЂРµРґРЅРёР№</div>
-                <div class="freq-btn" onclick="selectFreq(this)">рџџў РќРёР·РєРёР№</div>
+                <div class="freq-btn" onclick="selectFreq(this)">🔴 Высокий</div>
+                <div class="freq-btn active" onclick="selectFreq(this)">🟡 Средний</div>
+                <div class="freq-btn" onclick="selectFreq(this)">🟢 Низкий</div>
             </div>
-            <div class="modal-label">Р”РµРґР»Р°Р№РЅ (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)</div>
+            <div class="modal-label">Дедлайн (необязательно)</div>
             <input class="modal-input" id="taskDeadline" type="datetime-local">
             <div class="modal-actions">
-                <button class="modal-btn-cancel" onclick="closeModal('modalTask')">РћС‚РјРµРЅР°</button>
-                <button class="modal-btn-save" onclick="saveTask()">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
+                <button class="modal-btn-cancel" onclick="closeModal('modalTask')">Отмена</button>
+                <button class="modal-btn-save" onclick="saveTask()">Сохранить</button>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay hidden" id="modalTheme">
+    <div class="modal-overlay hidden" id="modalSettings">
         <div class="modal">
-            <div class="modal-title">Р’С‹Р±РµСЂРё С„РѕРЅ</div>
-            <div class="theme-grid" id="themePicker"></div>
+            <div class="modal-title">Настройки</div>
+
+            <div class="settings-section">
+                <div class="modal-label">Фон</div>
+                <div class="theme-grid" id="themePicker"></div>
+            </div>
+
+            <div class="settings-section">
+                <div class="modal-label">Шрифт</div>
+                <div class="freq-btns" id="fontPicker"></div>
+            </div>
+
+            <div class="settings-section hidden">
+                <div class="modal-label">Будильники для привычек</div>
+                <div class="row-between">
+                    <span class="label-text" style="max-width:220px">Предлагать ставить будильник в Telegram, когда создаю привычку с напоминанием</span>
+                    <label class="switch">
+                        <input type="checkbox" id="alarmOptinToggle" onchange="setAlarmOptin(this.checked)">
+                        <span class="switch-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <div class="modal-label">Размер букв</div>
+                <div class="brightness-row">
+                    <input type="range" id="fontSizeRange" min="85" max="130" step="5" value="100" oninput="setFontScale(this.value)">
+                    <span class="brightness-val" id="fontSizeVal">100%</span>
+                </div>
+            </div>
+
             <div class="modal-actions">
-                <button class="modal-btn-cancel" onclick="closeModal('modalTheme')">Р—Р°РєСЂС‹С‚СЊ</button>
+                <button class="modal-btn-cancel" onclick="closeModal('modalSettings')">Закрыть</button>
             </div>
         </div>
     </div>
 
     <div class="category-panel-overlay" id="categoryOverlay" onclick="closeCategoryPanel()">
         <div class="category-panel" onclick="event.stopPropagation()">
-            <div class="category-panel-title">РќР°Рґ С‡РµРј СЂР°Р±РѕС‚Р°РµС€СЊ?</div>
-            <input id="categoryPanelSearch" class="category-search" type="text" placeholder="РџРѕРёСЃРє РёР»Рё РґРѕР±Р°РІР»РµРЅРёРµ..." oninput="filterCategoryPanel()">
+            <div class="category-panel-title">Над чем работаешь?</div>
+            <input id="categoryPanelSearch" class="category-search" type="text" placeholder="Поиск или добавление..."
+                oninput="filterCategoryPanel()">
             <div class="category-panel-list" id="categoryPanelList"></div>
         </div>
     </div>
 
     <nav class="bottom-nav">
         <button class="nav-btn active" onclick="showTab('focus', this)">
-            <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
-            <span class="nav-label">Р¤РѕРєСѓСЃ</span>
+            <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                </svg></span>
+            <span class="nav-label">Фокус</span>
         </button>
         <button class="nav-btn" onclick="showTab('tasks', this)">
-            <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>
-            <span class="nav-label">Р—Р°РґР°С‡Рё</span>
+            <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round">
+                    <path d="M9 11l3 3L22 4" />
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
+                </svg></span>
+            <span class="nav-label">Задачи</span>
         </button>
         <button class="nav-btn" onclick="showTab('stats', this)">
-            <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg></span>
-            <span class="nav-label">РџСЂРѕС„РёР»СЊ</span>
+            <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                </svg></span>
+            <span class="nav-label">Профиль</span>
         </button>
         <button class="nav-btn" onclick="showTab('ai', this)">
-            <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2l2.4 7.2H22l-6 4.8 2.4 7.2L12 16l-6.4 5.2L8 14 2 9.2h7.6z"/></svg></span>
+            <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 8.5c-1.8-2.3-5.1-2.7-6.8-.6-2 2.5-2 6.9-.3 10 1.5 2.7 3.3 4.3 5.3 4.3.8 0 1.4-.2 1.8-.5.4.3 1 .5 1.8.5 2 0 3.8-1.6 5.3-4.3 1.7-3.1 1.7-7.5-.3-10-1.7-2.1-5-1.7-6.8.6z" />
+                    <path d="M12 8.5V5.2" />
+                    <path d="M12 6c1-1.6 2.7-2 4-1.3-.1 1.7-1.8 2.8-4 1.3z" />
+                </svg></span>
             <span class="nav-label">AI</span>
         </button>
     </nav>
 
-    <script src="/static/app.js?v=29"></script>
+    <script src="/static/js/core.js?v=31"></script>
+    <script src="/static/js/themes.js?v=31"></script>
+    <script src="/static/js/navigation.js?v=31"></script>
+    <script src="/static/js/focus.js?v=31"></script>
+    <script src="/static/js/ui.js?v=31"></script>
+    <script src="/static/js/habits.js?v=31"></script>
+    <script src="/static/js/tasks.js?v=31"></script>
+    <script src="/static/js/stats.js?v=31"></script>
+    <script src="/static/js/settings.js?v=31"></script>
+    <script src="/static/js/ai.js?v=31"></script>
+    <script src="/static/js/music.js?v=31"></script>
+    <script src="/static/js/boot.js?v=31"></script>
 </body>
+
 </html>
-
-

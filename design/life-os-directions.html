@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Life OS — направления дизайна</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#16161a;color:#e8e6f0;font-family:-apple-system,"Segoe UI",Arial,sans-serif;padding:32px 20px 60px}
+h1{font-size:22px;margin-bottom:6px}
+.lead{color:#9a98a8;font-size:14px;margin-bottom:28px;max-width:760px;line-height:1.5}
+.row{display:flex;flex-wrap:wrap;gap:36px;justify-content:center}
+.col{width:320px}
+.frame{width:320px;height:660px;border-radius:38px;border:8px solid #2a2a31;overflow:hidden;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.cap{margin-top:16px;font-size:13px;line-height:1.55;color:#b8b6c4}
+.cap b{display:block;font-size:16px;color:#fff;margin-bottom:6px}
+.cap li{margin-left:16px;margin-bottom:3px}
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;background:#2c2c36;color:#c9c7d6;margin-bottom:8px}
+
+/* общие элементы экрана */
+.screen{position:absolute;inset:0;padding:16px 14px 86px;display:flex;flex-direction:column;gap:12px}
+.chips{display:flex;gap:8px}
+.chip{flex:1;border-radius:14px;padding:10px 4px;text-align:center}
+.chip .v{font-size:17px;font-weight:700}
+.chip .l{font-size:10px;margin-top:3px}
+.rowb{display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.pill{border-radius:10px;padding:7px 12px;font-size:12px}
+.card{border-radius:20px;padding:16px}
+.ring{position:relative;width:170px;height:170px;margin:10px auto}
+.ring svg{position:absolute;inset:0}
+.ring .t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .t b{font-size:34px;letter-spacing:1px}
+.ring .t span{font-size:11px;margin-top:4px}
+.presets{display:flex;gap:6px;justify-content:center}
+.presets span{font-size:11px;padding:6px 10px;border-radius:9px}
+.nav{position:absolute;left:12px;right:12px;bottom:12px;height:58px;border-radius:30px;display:flex;align-items:center;justify-content:space-around;font-size:10px}
+.nav div{text-align:center;padding:6px 12px;border-radius:20px}
+.nav .a{font-weight:700}
+.task{display:flex;align-items:center;gap:10px;font-size:13px;padding:10px 12px;border-radius:14px}
+.task i{width:16px;height:16px;border-radius:50%;border:2px solid;flex-shrink:0}
+
+/* A — эволюция */
+.A .frame{background:radial-gradient(ellipse at 20% 0,#2a1250 0,#0a0620 55%,#05030f 100%)}
+.A .chip,.A .card,.A .task,.A .nav{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16)}
+.A .chip .l,.A .rowb .dim,.A .ring .t span{color:#c4c0dc}
+.A .pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff}
+.A .presets span{background:rgba(255,255,255,.1);color:#e6e2fa}
+.A .presets .on{background:#7c5cff;color:#fff}
+.A .nav div{color:#a9a5c4}.A .nav .a{background:rgba(124,92,255,.35);color:#fff}
+.A .task i{border-color:#9d85ff}
+.A .sub{font-size:11px;color:#c4c0dc;letter-spacing:1px;text-transform:uppercase}
+
+/* B — единый стиль с Health OS */
+.B .frame{background:#0a0a0c}
+.B .chip,.B .card,.B .task,.B .nav{background:#141417;border:1px solid #232328}
+.B .chip .l,.B .rowb .dim,.B .ring .t span{color:#8a8a96}
+.B .pill{background:#1b1b20;border:1px solid #2c2c33;color:#fff}
+.B .presets span{background:#1b1b20;color:#b8b8c4}
+.B .presets .on{background:#fff;color:#0a0a0c;font-weight:700}
+.B .nav div{color:#6f6f7a}.B .nav .a{color:#fff;background:#1f1f25}
+.B .task i{border-color:#4ade80}
+.B .acc1{color:#a78bfa}.B .acc2{color:#38bdf8}.B .acc3{color:#4ade80}
+.B .sub{font-size:11px;color:#8a8a96;letter-spacing:1px;text-transform:uppercase}
+
+/* C — светлый спокойный */
+.C .frame{background:#f6f3ec}
+.C .chip,.C .card,.C .task,.C .nav{background:#fff;border:1px solid #e6e0d2}
+.C .chip{color:#2b2a33}.C .chip .l,.C .rowb .dim,.C .ring .t span{color:#7b7788}
+.C .screen{color:#2b2a33}
+.C .pill{background:#fff;border:1px solid #e0d9c8;color:#2b2a33}
+.C .presets span{background:#efe9db;color:#5b5668}
+.C .presets .on{background:#2b2a33;color:#fff}
+.C .nav div{color:#8a8598}.C .nav .a{color:#2b2a33;background:#efe9db}
+.C .task i{border-color:#d9822b}
+.C .sub{font-size:11px;color:#7b7788;letter-spacing:1px;text-transform:uppercase}
+</style>
+</head>
+<body>
+<h1>Life OS — три направления дизайна</h1>
+<p class="lead">Один и тот же экран «Фокус» в трёх стилях. Данные примерные. Посмотрите и скажите, что нравится: можно взять один вариант целиком или смешать (например, цвета из B и контент из A).</p>
+
+<div class="row">
+
+<!-- A -->
+<div class="col A">
+<div class="frame"><div class="screen">
+  <div class="chips">
+    <div class="chip"><div class="v">3</div><div class="l">Сессии</div></div>
+    <div class="chip"><div class="v">1ч 25м</div><div class="l">Время фокуса</div></div>
+    <div class="chip"><div class="v">🔥 5</div><div class="l">Дней подряд</div></div>
+  </div>
+  <div class="rowb"><span class="dim">Над чем работаешь?</span><span class="pill">💼 Deep Work</span></div>
+  <div class="card">
+    <div class="rowb"><span class="dim">В режиме фокуса</span><span class="pill">25 мин ▾</span></div>
+    <div class="ring">
+      <svg viewBox="0 0 170 170"><circle cx="85" cy="85" r="76" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="7"/><circle cx="85" cy="85" r="76" fill="none" stroke="#9d85ff" stroke-width="7" stroke-linecap="round" stroke-dasharray="478" stroke-dashoffset="330" transform="rotate(-90 85 85)"/></svg>
+      <div class="t"><b>17:42</b><span>до конца сессии</span></div>
+    </div>
+    <div class="presets"><span>15</span><span class="on">25</span><span>45</span><span>90</span></div>
+  </div>
+  <div class="sub">План на сегодня</div>
+  <div class="task"><i></i>Подготовить отчёт</div>
+  <div class="task"><i></i>Созвониться с командой</div>
+  <div class="nav"><div class="a">◎<br>Фокус</div><div>☑<br>Задачи</div><div>◔<br>Профиль</div><div>✦<br>AI</div></div>
+</div></div>
+<div class="cap"><span class="tag">вариант A</span><b>Эволюция текущего</b>
+<ul><li>Сохраняем тёмный фиолетовый стиль, как сейчас</li><li>Поднимаем контраст подписей (сейчас они тусклые)</li><li>Заполняем пустую половину экрана: пресеты времени и «План на сегодня»</li></ul></div>
+</div>
+
+<!-- B -->
+<div class="col B">
+<div class="frame"><div class="screen">
+  <div class="chips">
+    <div class="chip"><div class="v acc1">3</div><div class="l">Сессии</div></div>
+    <div class="chip"><div class="v acc2">1ч 25м</div><div class="l">Время фокуса</div></div>
+    <div class="chip"><div class="v acc3">5 дн.</div><div class="l">Серия</div></div>
+  </div>
+  <div class="rowb"><span class="dim">Над чем работаешь?</span><span class="pill">💼 Deep Work</span></div>
+  <div class="card">
+    <div class="rowb"><span class="dim">ФОКУС</span><span class="acc1" style="font-weight:600;font-size:13px">71%</span></div>
+    <div class="ring">
+      <svg viewBox="0 0 170 170"><circle cx="85" cy="85" r="76" fill="none" stroke="#232328" stroke-width="6"/><circle cx="85" cy="85" r="76" fill="none" stroke="#a78bfa" stroke-width="6" stroke-linecap="round" stroke-dasharray="478" stroke-dashoffset="139" transform="rotate(-90 85 85)"/></svg>
+      <div class="t"><b>17:42</b><span>осталось</span></div>
+    </div>
+    <div class="presets"><span>15</span><span class="on">25</span><span>45</span><span>90</span></div>
+  </div>
+  <div class="sub">Задачи на сегодня</div>
+  <div class="task"><i></i>Подготовить отчёт</div>
+  <div class="task"><i></i>Созвониться с командой</div>
+  <div class="nav"><div class="a">◎<br>Фокус</div><div>☑<br>Задачи</div><div>◔<br>Профиль</div><div>✦<br>AI</div></div>
+</div></div>
+<div class="cap"><span class="tag">вариант B</span><b>Единый стиль с Health OS</b>
+<ul><li>Плоский почти чёрный фон и тонкие карточки, как в Health OS</li><li>У каждого раздела свой акцентный цвет (фокус, задачи, привычки)</li><li>Оба приложения выглядят как одна экосистема</li></ul></div>
+</div>
+
+<!-- C -->
+<div class="col C">
+<div class="frame"><div class="screen">
+  <div class="chips">
+    <div class="chip"><div class="v">3</div><div class="l">Сессии</div></div>
+    <div class="chip"><div class="v">1ч 25м</div><div class="l">Время фокуса</div></div>
+    <div class="chip"><div class="v">🔥 5</div><div class="l">Дней подряд</div></div>
+  </div>
+  <div class="rowb"><span class="dim">Над чем работаешь?</span><span class="pill">💼 Deep Work</span></div>
+  <div class="card">
+    <div class="rowb"><span class="dim">В режиме фокуса</span><span class="pill">25 мин ▾</span></div>
+    <div class="ring">
+      <svg viewBox="0 0 170 170"><circle cx="85" cy="85" r="76" fill="none" stroke="#e9e2d2" stroke-width="7"/><circle cx="85" cy="85" r="76" fill="none" stroke="#d9822b" stroke-width="7" stroke-linecap="round" stroke-dasharray="478" stroke-dashoffset="330" transform="rotate(-90 85 85)"/></svg>
+      <div class="t"><b>17:42</b><span>до конца сессии</span></div>
+    </div>
+    <div class="presets"><span>15</span><span class="on">25</span><span>45</span><span>90</span></div>
+  </div>
+  <div class="sub">План на сегодня</div>
+  <div class="task"><i></i>Подготовить отчёт</div>
+  <div class="task"><i></i>Созвониться с командой</div>
+  <div class="nav"><div class="a">◎<br>Фокус</div><div>☑<br>Задачи</div><div>◔<br>Профиль</div><div>✦<br>AI</div></div>
+</div></div>
+<div class="cap"><span class="tag">вариант C</span><b>Светлый и спокойный</b>
+<ul><li>Тёплый светлый фон, лучше читается днём и на солнце</li><li>Один акцент (янтарный) вместо переливов</li><li>Можно сделать автопереключение светлая/тёмная по теме Telegram</li></ul></div>
+</div>
+
+</div>
+</body>
+</html>

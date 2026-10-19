@@ -1,0 +1,401 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    background: #0a0a0c;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.page {
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 24px 20px;
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.date-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 6px;
+}
+
+.page-title {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.score-badge {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-num {
+    font-size: 20px;
+    font-weight: 700
+}
+
+.score-label {
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4)
+}
+
+.score-diff {
+    font-size: 10px;
+    color: #4ade80;
+    margin-top: 2px
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.card-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.card-percent {
+    font-size: 13px;
+    font-weight: 600
+}
+
+.percent-green {
+    color: #4ade80
+}
+
+.percent-orange {
+    color: #fb923c
+}
+
+.percent-blue {
+    color: #38bdf8
+}
+
+.card-value {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.value-num {
+    font-size: 40px;
+    font-weight: 700
+}
+
+.value-unit {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4)
+}
+
+.card-sub {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4)
+}
+
+.mini-map {
+    width: 28px;
+    height: 28px;
+    margin-top: 12px;
+    border-radius: 6px;
+    background-image:
+        linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.15) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.15) 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ---- Вкладки ---- */
+.page {
+    padding-bottom: 90px
+}
+
+.health-tab {
+    display: none
+}
+
+.health-tab.active {
+    display: block
+}
+
+.page-title-sm {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 14px
+}
+
+.section-title {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 18px 0 10px
+}
+
+.macros-row {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 12px;
+    margin-top: 4px;
+}
+
+.macro {
+    text-align: center;
+    flex: 1
+}
+
+.macro-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fb923c
+}
+
+.macro-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 2px
+}
+
+/* ---- Списки приёмов пищи / тренировок ---- */
+.entries-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.entry-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.entry-name {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.entry-sub {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 2px
+}
+
+.entry-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fb923c;
+    white-space: nowrap
+}
+
+.hint-text {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 16px;
+    line-height: 1.5
+}
+
+.empty-hint {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.35);
+    padding: 16px 0;
+    text-align: center
+}
+
+/* ---- Нижняя навигация ---- */
+.bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    background: rgba(10, 10, 12, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+    backdrop-filter: blur(10px);
+}
+
+.nav-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+.nav-btn.active {
+    color: #fff
+}
+
+.nav-icon {
+    font-size: 18px
+}
+
+.nav-label {
+    font-size: 10px
+}
+
+/* ---- Мини-график статистики ---- */
+.stats-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 80px;
+}
+
+.stats-bar-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+    justify-content: flex-end
+}
+
+.stats-bar {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(180deg, #4ade80, #22c55e);
+    min-height: 3px
+}
+
+.stats-bar-label {
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.4)
+}
+
+/* ---- Вкладка «Питание»: верх ---- */
+.nut-hero {
+    position: relative;
+    margin: -24px -20px 0;
+    padding: 24px 20px 10px;
+    background:
+        linear-gradient(180deg, rgba(10, 10, 12, 0) 55%, #0a0a0c 100%),
+        url("img/mountain.jpg") center top / cover no-repeat;
+}
+
+.nut-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.nut-phrase {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    padding-top: 40px;
+}
+
+.streak-chip {
+    background: rgba(20, 20, 24, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 14px;
+}
+
+.ring-wrap {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    margin: 20px auto;
+}
+
+.ring-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.ring-track {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.08);
+    stroke-width: 14;
+}
+
+.ring-progress {
+    fill: none;
+    stroke: url(#ringGradient);
+    stroke-width: 14;
+    stroke-linecap: round;
+    stroke-dasharray: 628;
+    stroke-dashoffset: 352;
+    filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.45));
+}
+
+.ring-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ring-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.ring-value {
+    font-size: 52px;
+    font-weight: 700;
+    margin: 4px 0;
+}
+
+.ring-goal {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+}
+.streak-chip img {
+    width: 16px;
+    height: 16px;
+    vertical-align: -3px;
+}

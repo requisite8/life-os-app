@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health OS</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="page">
+
+        <div class="header">
+            <div>
+                <div class="date-label">Понедельник · 21 июля</div>
+                <div class="page-title">Health OS</div>
+            </div>
+            <div class="score-badge">
+                <div class="score-num">84</div>
+                <div class="score-label">SCORE</div>
+                <div class="score-diff">▲ +6</div>
+            </div>
+        </div>
+
+        <div id="tab-today" class="health-tab active">
+            <div class="card" id="stepsCard">
+                <div class="card-top">
+                    <span class="card-label">🚩 ШАГИ</span>
+                    <span class="card-percent percent-green" id="stepsPercent">72%</span>
+                </div>
+                <div class="card-value">
+                    <span class="value-num" id="stepsValue">0</span>
+                    <span class="value-unit">шагов</span>
+                </div>
+                <div class="card-sub" id="stepsSub">осталось 2 760 до цели · 10 000</div>
+                <div class="mini-map"></div>
+            </div>
+
+            <div class="card" id="nutritionSummaryCard">
+                <div class="card-top">
+                    <span class="card-label">🔥 КАЛОРИИ</span>
+                    <span class="card-percent percent-orange" id="nutritionPercent">0%</span>
+                </div>
+                <div class="card-value">
+                    <span class="value-num" id="nutritionValue">0</span>
+                    <span class="value-unit">ккал</span>
+                </div>
+                <div class="card-sub" id="nutritionSub">из 2500 ккал</div>
+                <div class="macros-row">
+                    <div class="macro">
+                        <div class="macro-val" id="macroProtein">0г</div>
+                        <div class="macro-label">БЕЛКИ</div>
+                    </div>
+                    <div class="macro">
+                        <div class="macro-val" id="macroFat">0г</div>
+                        <div class="macro-label">ЖИРЫ</div>
+                    </div>
+                    <div class="macro">
+                        <div class="macro-val" id="macroCarbs">0г</div>
+                        <div class="macro-label">УГЛЕВОДЫ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ПИТАНИЕ -->
+        <div id="tab-nutrition" class="health-tab">
+            <div class="nut-hero">
+                <div class="nut-top">
+                    <span class="nut-phrase"> Лучше чем вчера </span>
+                    <span class="streak-chip"><img src="img/fire.png" alt=""> День 12 ›</span>
+                </div>
+                <div class="ring-wrap">
+                    <svg class="ring-svg" viewBox="0 0 240 240">
+                        <defs>
+                            <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#34d399" />
+                                <stop offset="100%" stop-color="#2dd4bf" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="ring-track" cx="120" cy="120" r="100" />
+                        <circle class="ring-progress" cx="120" cy="120" r="100" />
+                    </svg>
+                    <div class="ring-center">
+                        <div class="ring-label">Калории</div>
+                        <div class="ring-value">1 240</div>
+                        <div class="ring-goal">из 2800</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="page-title-sm">Питание сегодня</div>
+            <div class="card">
+                <div class="card-top">
+                    <span class="card-label">🔥 ИТОГО</span>
+                    <span class="card-percent percent-orange" id="nutritionPercent2">0%</span>
+                </div>
+                <div class="card-value">
+                    <span class="value-num" id="nutritionValue2">0</span>
+                    <span class="value-unit">ккал</span>
+                </div>
+                <div class="card-sub" id="nutritionSub2">из 2500 ккал</div>
+            </div>
+            <div class="section-title">Приёмы пищи</div>
+            <div id="mealsList" class="entries-list"></div>
+            <div class="hint-text">Опиши текстом или пришли фото еды прямо боту в Telegram — я посчитаю калории и БЖУ и
+                добавлю сюда.</div>
+        </div>
+        <!-- ТРЕНИРОВКИ -->
+        <div id="tab-workouts" class="health-tab">
+            <div class="page-title-sm">Тренировки сегодня</div>
+            <div id="workoutsList" class="entries-list"></div>
+            <div class="hint-text">Напиши боту, что за тренировку провёл (например «бегал 30 минут») — я запишу сюда.
+            </div>
+        </div>
+
+        <div id="tab-stats" class="health-tab">
+            <div class="page-title-sm">Статистика за неделю</div>
+            <div class="card">
+                <div class="card-top"><span class="card-label">🚩 ШАГИ ПО ДНЯМ</span></div>
+                <div class="stats-chart" id="stepsChart"></div>
+            </div>
+            <div class="card">
+                <div class="card-top"><span class="card-label">🔥 КАЛОРИИ ПО ДНЯМ</span></div>
+                <div class="stats-chart" id="caloriesChart"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <nav class="bottom-nav">
+        <button class="nav-btn active" id="navBtn-today" onclick="showHealthTab('today', this)">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Сегодня</span>
+        </button>
+        <button class="nav-btn" id="navBtn-nutrition" onclick="showHealthTab('nutrition', this)">
+            <span class="nav-icon">🍽</span>
+            <span class="nav-label">Питание</span>
+        </button>
+        <button class="nav-btn" id="navBtn-workouts" onclick="showHealthTab('workouts', this)">
+            <span class="nav-icon">⚡</span>
+            <span class="nav-label">Тренировки</span>
+        </button>
+        <button class="nav-btn" id="navBtn-stats" onclick="showHealthTab('stats', this)">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Статистика</span>
+        </button>
+    </nav>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
