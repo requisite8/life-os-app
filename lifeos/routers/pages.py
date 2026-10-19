@@ -12,10 +12,33 @@ from ..config import ENABLE_EMBEDDED_WORKERS, STATIC_DIR, TELEGRAM_BOT_TOKEN, WE
 
 router = APIRouter()
 
+NO_CACHE = {"Cache-Control": "no-cache"}
+_ASSET_RE = re.compile(r'(?P<attr>(?:src|href)=")(?P<url>[^":?#]+\.(?:css|js|png|jpg|jpeg|webp|svg))(?P<end>")')
+
+
+def add_asset_versions(html: str, base_dir) -> str:
+    """Дописывает ?v=<время правки файла> к локальным css/js/картинкам в HTML,
+    чтобы Telegram и браузеры не показывали устаревшие копии."""
+
+    def repl(m):
+        path = base_dir / m.group("url")
+        if not path.is_file():
+            return m.group(0)
+        return f'{m.group("attr")}{m.group("url")}?v={int(path.stat().st_mtime)}{m.group("end")}'
+
+    return _ASSET_RE.sub(repl, html)
+
 
 @router.get("/", response_class=HTMLResponse)
 def read_root():
-    return (STATIC_DIR / "index.html").read_text(encoding="utf-8")
+    return HTMLResponse((STATIC_DIR / "index.html").read_text(encoding="utf-8"), headers=NO_CACHE)
+
+
+@router.get("/health/", response_class=HTMLResponse)
+def read_health_app():
+    health_dir = STATIC_DIR / "health"
+    html = (health_dir / "index.html").read_text(encoding="utf-8")
+    return HTMLResponse(add_asset_versions(html, health_dir), headers=NO_CACHE)
 
 
 @router.get("/alarm-redirect", response_class=HTMLResponse)

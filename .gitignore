@@ -6,3 +6,4 @@ __pycache__/
 .env
 temp_write_test.txt
 main_check.pyc.*
+.claude/
